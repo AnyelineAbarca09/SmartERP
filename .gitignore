@@ -1,0 +1,16 @@
+# Dependencias Node
+node_modules/
+
+# Laravel
+vendor/
+.env
+
+# Logs
+*.log
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Configuración VS Code
+.vscode/
