@@ -243,3 +243,34 @@ Cada detalle pertenece a una venta.
 
 ```text
 sales 1 ───────── N sale_details
+
+
+
+
+# 11. Tabla: purchases
+
+La tabla `purchases` almacenará la información general de las compras realizadas a los proveedores.
+
+Esta tabla representa la cabecera de una compra. Los productos asociados se almacenarán en la tabla `purchase_details`.
+
+## Campos
+
+| Campo | Tipo | Restricciones | Descripción |
+|---|---|---|---|
+| id | BIGINT | PRIMARY KEY | Identificador único de la compra |
+| supplier_id | BIGINT | FOREIGN KEY, NOT NULL | Proveedor asociado |
+| user_id | BIGINT | FOREIGN KEY, NOT NULL | Usuario que registra la compra |
+| purchase_date | DATETIME | NOT NULL | Fecha y hora de la compra |
+| subtotal | DECIMAL(12,2) | NOT NULL | Subtotal |
+| tax | DECIMAL(12,2) | NOT NULL | Impuesto |
+| total | DECIMAL(12,2) | NOT NULL | Total |
+| status | VARCHAR(20) | DEFAULT `completed` | Estado de la compra |
+| created_at | TIMESTAMP | | Fecha de creación |
+| updated_at | TIMESTAMP | | Fecha de actualización |
+
+## Relaciones
+
+Una compra pertenece a un proveedor.
+
+```text
+suppliers 1 ───────── N purchases
