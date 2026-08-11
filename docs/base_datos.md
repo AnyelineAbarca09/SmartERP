@@ -276,7 +276,9 @@ Una compra pertenece a un proveedor.
 suppliers 1 ───────── N purchases
 
 
-# 12. Tabla: purchase_details
+
+
+# Tabla: purchase_details
 
 La tabla `purchase_details` almacenará los productos asociados a cada compra.
 
@@ -301,3 +303,42 @@ Cada detalle pertenece a una compra.
 
 ```text
 purchases 1 ───────── N purchase_details
+
+
+
+
+# Tabla: inventory_movements
+
+La tabla `inventory_movements` almacenará el historial de movimientos realizados sobre el inventario.
+
+Permitirá identificar cuándo, cuánto y por qué se modificó el stock de un producto.
+
+## Campos
+
+| Campo | Tipo | Restricciones | Descripción |
+|---|---|---|---|
+| id | BIGINT | PRIMARY KEY | Identificador único |
+| product_id | BIGINT | FOREIGN KEY, NOT NULL | Producto afectado |
+| user_id | BIGINT | FOREIGN KEY, NOT NULL | Usuario responsable |
+| type | VARCHAR(20) | NOT NULL | Tipo de movimiento |
+| quantity | INT | NOT NULL | Cantidad del movimiento |
+| reference_type | VARCHAR(30) | NULL | Tipo de operación que originó el movimiento |
+| reference_id | BIGINT | NULL | Identificador de la operación relacionada |
+| notes | VARCHAR(255) | NULL | Observaciones |
+| created_at | TIMESTAMP | | Fecha de creación |
+| updated_at | TIMESTAMP | | Fecha de actualización |
+
+## Tipos de movimiento
+
+Los movimientos podrán ser:
+
+- `IN`: entrada de inventario.
+- `OUT`: salida de inventario.
+- `ADJUSTMENT`: ajuste manual del inventario.
+
+## Relaciones
+
+Un producto puede tener múltiples movimientos de inventario.
+
+```text
+products 1 ───────── N inventory_movements
