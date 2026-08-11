@@ -82,3 +82,26 @@ Cada usuario pertenece a un único rol.
 
 ```text
 users N ───────── 1 roles
+
+
+# Tabla: categories
+
+La tabla `categories` almacenará las categorías utilizadas para clasificar los productos del sistema.
+
+## Campos
+
+| Campo | Tipo | Restricciones | Descripción |
+|---|---|---|---|
+| id | BIGINT | PRIMARY KEY | Identificador único |
+| name | VARCHAR(100) | NOT NULL, UNIQUE | Nombre de la categoría |
+| description | VARCHAR(255) | NULL | Descripción de la categoría |
+| status | BOOLEAN | DEFAULT TRUE | Indica si la categoría está activa |
+| created_at | TIMESTAMP | | Fecha de creación |
+| updated_at | TIMESTAMP | | Fecha de actualización |
+
+## Relaciones
+
+Una categoría puede tener múltiples productos.
+
+```text
+categories 1 ───────── N products
