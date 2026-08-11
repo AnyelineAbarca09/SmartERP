@@ -105,3 +105,32 @@ Una categoría puede tener múltiples productos.
 
 ```text
 categories 1 ───────── N products
+
+
+# Tabla: products
+
+La tabla `products` almacenará los productos disponibles para la venta y gestión del inventario.
+
+## Campos
+
+| Campo | Tipo | Restricciones | Descripción |
+|---|---|---|---|
+| id | BIGINT | PRIMARY KEY | Identificador único |
+| category_id | BIGINT | FOREIGN KEY, NOT NULL | Categoría del producto |
+| code | VARCHAR(50) | NOT NULL, UNIQUE | Código único del producto |
+| name | VARCHAR(150) | NOT NULL | Nombre del producto |
+| description | TEXT | NULL | Descripción del producto |
+| purchase_price | DECIMAL(12,2) | NOT NULL | Precio de compra |
+| sale_price | DECIMAL(12,2) | NOT NULL | Precio de venta |
+| stock | INT | DEFAULT 0 | Existencia actual |
+| minimum_stock | INT | DEFAULT 0 | Cantidad mínima de inventario |
+| status | BOOLEAN | DEFAULT TRUE | Indica si el producto está activo |
+| created_at | TIMESTAMP | | Fecha de creación |
+| updated_at | TIMESTAMP | | Fecha de actualización |
+
+## Relaciones
+
+Cada producto pertenece a una categoría.
+
+```text
+products N ───────── 1 categories
