@@ -215,3 +215,31 @@ Una venta pertenece a un cliente.
 
 ```text
 customers 1 ───────── N sales
+
+
+
+# 10. Tabla: sale_details
+
+La tabla `sale_details` almacenará los productos asociados a cada venta.
+
+Esta tabla representa el detalle de una venta y permite que una venta contenga múltiples productos.
+
+## Campos
+
+| Campo | Tipo | Restricciones | Descripción |
+|---|---|---|---|
+| id | BIGINT | PRIMARY KEY | Identificador único |
+| sale_id | BIGINT | FOREIGN KEY, NOT NULL | Venta asociada |
+| product_id | BIGINT | FOREIGN KEY, NOT NULL | Producto vendido |
+| quantity | INT | NOT NULL | Cantidad vendida |
+| unit_price | DECIMAL(12,2) | NOT NULL | Precio del producto al momento de la venta |
+| subtotal | DECIMAL(12,2) | NOT NULL | Cantidad multiplicada por precio |
+| created_at | TIMESTAMP | | Fecha de creación |
+| updated_at | TIMESTAMP | | Fecha de actualización |
+
+## Relaciones
+
+Cada detalle pertenece a una venta.
+
+```text
+sales 1 ───────── N sale_details
