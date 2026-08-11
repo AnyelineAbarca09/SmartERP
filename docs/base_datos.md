@@ -186,3 +186,32 @@ Un proveedor puede tener múltiples compras.
 
 ```text
 suppliers 1 ───────── N purchases
+
+
+# 9. Tabla: sales
+
+La tabla `sales` almacenará la información general de cada venta realizada en el sistema.
+
+Esta tabla representa la cabecera de una venta. Los productos asociados a cada venta se almacenarán en la tabla `sale_details`.
+
+## Campos
+
+| Campo | Tipo | Restricciones | Descripción |
+|---|---|---|---|
+| id | BIGINT | PRIMARY KEY | Identificador único de la venta |
+| customer_id | BIGINT | FOREIGN KEY, NOT NULL | Cliente asociado |
+| user_id | BIGINT | FOREIGN KEY, NOT NULL | Usuario que registra la venta |
+| sale_date | DATETIME | NOT NULL | Fecha y hora de la venta |
+| subtotal | DECIMAL(12,2) | NOT NULL | Subtotal de la venta |
+| tax | DECIMAL(12,2) | NOT NULL | Impuesto |
+| total | DECIMAL(12,2) | NOT NULL | Total de la venta |
+| status | VARCHAR(20) | DEFAULT `completed` | Estado de la venta |
+| created_at | TIMESTAMP | | Fecha de creación |
+| updated_at | TIMESTAMP | | Fecha de actualización |
+
+## Relaciones
+
+Una venta pertenece a un cliente.
+
+```text
+customers 1 ───────── N sales
