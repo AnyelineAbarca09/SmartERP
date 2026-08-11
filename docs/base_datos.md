@@ -161,3 +161,28 @@ Un cliente puede tener múltiples ventas.
 
 ```text
 customers 1 ───────── N sales
+
+
+# Tabla: suppliers
+
+La tabla `suppliers` almacenará los proveedores de la empresa.
+
+## Campos
+
+| Campo | Tipo | Restricciones | Descripción |
+|---|---|---|---|
+| id | BIGINT | PRIMARY KEY | Identificador único |
+| company_name | VARCHAR(150) | NOT NULL | Nombre de la empresa |
+| contact_name | VARCHAR(100) | NULL | Persona de contacto |
+| phone | VARCHAR(30) | NULL | Número telefónico |
+| email | VARCHAR(150) | UNIQUE, NULL | Correo electrónico |
+| status | BOOLEAN | DEFAULT TRUE | Estado del proveedor |
+| created_at | TIMESTAMP | | Fecha de creación |
+| updated_at | TIMESTAMP | | Fecha de actualización |
+
+## Relaciones
+
+Un proveedor puede tener múltiples compras.
+
+```text
+suppliers 1 ───────── N purchases
