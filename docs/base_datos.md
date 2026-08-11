@@ -134,3 +134,30 @@ Cada producto pertenece a una categoría.
 
 ```text
 products N ───────── 1 categories
+
+
+#. Tabla: customers
+
+La tabla `customers` almacenará los clientes de la empresa.
+
+## Campos
+
+| Campo | Tipo | Restricciones | Descripción |
+|---|---|---|---|
+| id | BIGINT | PRIMARY KEY | Identificador único |
+| first_name | VARCHAR(100) | NOT NULL | Nombre del cliente |
+| last_name | VARCHAR(100) | NOT NULL | Apellidos del cliente |
+| identification | VARCHAR(30) | UNIQUE, NULL | Identificación del cliente |
+| phone | VARCHAR(30) | NULL | Número telefónico |
+| email | VARCHAR(150) | UNIQUE, NULL | Correo electrónico |
+| address | VARCHAR(255) | NULL | Dirección |
+| status | BOOLEAN | DEFAULT TRUE | Estado del cliente |
+| created_at | TIMESTAMP | | Fecha de creación |
+| updated_at | TIMESTAMP | | Fecha de actualización |
+
+## Relaciones
+
+Un cliente puede tener múltiples ventas.
+
+```text
+customers 1 ───────── N sales
