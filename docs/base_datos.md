@@ -8,7 +8,7 @@ El diseño seguirá un modelo relacional y buscará mantener la integridad de lo
 
 ---
 
-# 2. Tablas
+# Tablas
 
 Las principales tablas del sistema serán:
 
@@ -26,7 +26,7 @@ Las principales tablas del sistema serán:
 
 ---
 
-# 3. Tabla: roles
+# Tabla: roles
 
 La tabla `roles` almacenará los diferentes roles disponibles dentro del sistema.
 
@@ -51,9 +51,34 @@ La tabla tendrá inicialmente los siguientes registros:
 
 ---
 
-# 4. Relaciones
+# Relaciones 
 
 Un rol puede pertenecer a múltiples usuarios.
 
 ```text
 roles 1 ───────── N users
+
+
+# Tabla: users
+
+La tabla `users` almacenará los usuarios que podrán acceder al sistema.
+
+## Campos
+
+| Campo | Tipo | Restricciones | Descripción |
+|---|---|---|---|
+| id | BIGINT | PRIMARY KEY | Identificador único |
+| role_id | BIGINT | FOREIGN KEY, NOT NULL | Rol asignado al usuario |
+| name | VARCHAR(100) | NOT NULL | Nombre del usuario |
+| email | VARCHAR(150) | NOT NULL, UNIQUE | Correo electrónico |
+| password | VARCHAR(255) | NOT NULL | Contraseña almacenada mediante hash |
+| status | BOOLEAN | DEFAULT TRUE | Indica si el usuario está activo |
+| created_at | TIMESTAMP | | Fecha de creación |
+| updated_at | TIMESTAMP | | Fecha de actualización |
+
+## Relaciones
+
+Cada usuario pertenece a un único rol.
+
+```text
+users N ───────── 1 roles
